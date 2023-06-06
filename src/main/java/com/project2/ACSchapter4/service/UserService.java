@@ -81,5 +81,4 @@ public class UserService {
         Page<User>  users = userRepository.findAll(page);
         return users.map(DTOconverter::convert);
     }
-
 }
