@@ -28,17 +28,4 @@ public class User {
     private String telefone;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataCadastro;
-
-
-
-    public static UserDTO convert(User user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setNome(user.getNome());
-        userDTO.setCpf(user.getCpf());
-        userDTO.setTelefone(user.getTelefone());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setEndereco(user.getEndereco());
-        userDTO.setDataCadastro(user.getDataCadastro());
-        return userDTO;
-    }
 }

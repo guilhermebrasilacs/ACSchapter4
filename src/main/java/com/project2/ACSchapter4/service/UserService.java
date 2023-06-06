@@ -1,5 +1,6 @@
 package com.project2.ACSchapter4.service;
 
+import com.project2.ACSchapter4.model.DTOconverter;
 import com.project2.ACSchapter4.model.User;
 import com.project2.ACSchapter4.model.UserDTO;
 import com.project2.ACSchapter4.repository.UserRepository;
@@ -21,33 +22,33 @@ public class UserService {
         List<User> usuarios = userRepository.findAll();
         return usuarios
                 .stream()
-                .map(User::convert)
+                .map(DTOconverter::convert)
                 .collect(Collectors.toList());
     }
 
     public UserDTO findById(long userId){
         User usuario = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        return User.convert(usuario);
+        return DTOconverter.convert(usuario);
     }
 
     public UserDTO save(UserDTO userDTO){
         userDTO.setDataCadastro(LocalDateTime.now());
         User user = userRepository.save(UserDTO.convert(userDTO));
-        return User.convert(user);
+        return DTOconverter.convert(user);
     }
 
     public  UserDTO delete(long userId){
         User user = userRepository
                 .findById(userId).orElseThrow(() -> new RuntimeException());
         userRepository.delete(user);
-        return User.convert(user);
+        return DTOconverter.convert(user);
     }
 
     public UserDTO findByCpf(String cpf){
         User user = userRepository.findByCpf(cpf);
         if(user != null){
-            User.convert(user);
+            DTOconverter.convert(user);
         }
         return null;
     }
@@ -56,7 +57,7 @@ public class UserService {
         List<User> usuarios = userRepository.queryByNomeLike(name);
         return usuarios
                 .stream()
-                .map(User::convert)
+                .map(DTOconverter::convert)
                 .collect(Collectors.toList());
     }
 
@@ -73,12 +74,12 @@ public class UserService {
             user.setEndereco(userDTO.getEndereco());
         }
         user = userRepository.save(user);
-        return User.convert(user);
+        return DTOconverter.convert(user);
     }
 
     public Page<UserDTO> getAllPage(Pageable page){
         Page<User>  users = userRepository.findAll(page);
-        return users.map(User::convert);
+        return users.map(DTOconverter::convert);
     }
 
 }
