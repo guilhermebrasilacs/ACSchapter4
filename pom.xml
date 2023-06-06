@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.project2</groupId>
-	<artifactId>ACSchapter4</artifactId>
+	<artifactId>user-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ACSchapter4</name>
 	<description>User-API</description>
