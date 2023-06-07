@@ -1,0 +1,1 @@
+alter table users.user addd column key varchar(100);

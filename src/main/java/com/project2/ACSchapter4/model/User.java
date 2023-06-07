@@ -16,16 +16,29 @@ import	java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String cpf;
+    private String key;
     private String email;
     private String endereco;
     private String telefone;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataCadastro;
+
+    public static User convert(UserDTO userDTO){
+        User user = new User();
+        user.setNome(userDTO.getNome());
+        user.setCpf(userDTO.getCpf());
+        user.setTelefone(userDTO.getTelefone());
+        user.setKey(userDTO.getKey());
+        user.setEmail(userDTO.getEmail());
+        user.setEndereco(userDTO.getEndereco());
+        user.setDataCadastro(userDTO.getDataCadastro());
+        return user;
+    }
 }
