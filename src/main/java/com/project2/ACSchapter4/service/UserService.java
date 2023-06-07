@@ -4,6 +4,7 @@ import com.project2.ACSchapter4.model.DTOconverter;
 import com.project2.ACSchapter4.model.User;
 import com.project2.ACSchapter4.model.UserDTO;
 import com.project2.ACSchapter4.repository.UserRepository;
+import com.project5.ACSchapter8.shoppingclient.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,12 +48,12 @@ public class UserService {
         return DTOconverter.convert(user);
     }
 
-    public UserDTO findByCpf(String cpf){
-        User user = userRepository.findByCpf(cpf);
+    public UserDTO findByCpf(String cpf, String key){
+        User user = userRepository.findByCpfAndKey(cpf, key);
         if(user != null){
             DTOconverter.convert(user);
         }
-        return null;
+        throw new UserNotFoundException();
     }
 
     public List<UserDTO> queryByName(String name){

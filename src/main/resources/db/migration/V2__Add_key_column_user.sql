@@ -1,1 +1,1 @@
-alter table users.user addd column key varchar(100);
+alter table users.user add column key varchar(100);
